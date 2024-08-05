@@ -1,0 +1,44 @@
+<!-- login.component.html -->
+<app-navbar>
+
+</app-navbar>
+
+<div class="bootstrap-wrapper">
+  <div class="container">
+    <div class="row" style="margin-top: 20px;">
+      <div class="col-md-6 offset-md-3">
+        <div class="container text-center">
+          <img src="../../../assets/image.png" alt="" class="rounded-circle img-fluid" style="max-width: 150px;">
+        </div>
+        <h1 class="text-center">Login Here!!!</h1>
+
+
+        <form (ngSubmit)="formSubmit()">
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>UserName</mat-label>
+            <input
+              required
+              [(ngModel)]="loginData.username"
+              name="name"
+              matInput
+              placeholder="Enter Your UserName">
+          </mat-form-field>
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Password</mat-label>
+            <input
+              required
+              [(ngModel)]="loginData.password"
+              name="password"
+              type="password"
+              matInput
+              placeholder="Enter Your Password">
+          </mat-form-field>
+          <div class="container text-center">
+            <button type="submit" mat-raised-button color="primary">Login</button>
+            <button type="button" style="margin-left: 20px;" mat-raised-button color="accent">Clear</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
