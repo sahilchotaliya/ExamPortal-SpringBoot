@@ -1,0 +1,38 @@
+<!-- profile.component.html -->
+<div class="profile-card">
+  <header class="profile-header">
+    <h1>Profile Details</h1>
+  </header>
+  <div class="profile-content">
+    <div class="profile-image">
+      <img src="../../../assets/download.png" alt="Profile picture">
+    </div>
+    <h2 class="profile-name">{{ user.firstname}} {{user.lastname}}</h2>
+    <div class="profile-details">
+      <div class="detail-item">
+        <span class="detail-label">Username:</span>
+        <span class="detail-value">{{ user.username }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">User ID:</span>
+        <span class="detail-value">{{ user.id }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Phone:</span>
+        <span class="detail-value">{{ user.number }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">User Role:</span>
+        <span class="detail-value">{{ user.authorities[0].authority }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="detail-label">Status:</span>
+        <span class="detail-value">{{ user.enabled?"ACTIVE":"UNACTVE" }}</span>
+      </div>
+    </div>
+  </div>
+  <footer class="profile-footer">
+    <button class="btn btn-primary">Update</button>
+    <button class="btn btn-secondary">Share</button>
+  </footer>
+</div>

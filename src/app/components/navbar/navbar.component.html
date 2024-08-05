@@ -19,7 +19,7 @@
   <span >
     <button
     *ngIf="isLoggedIn"
-    mat-button>
+    mat-button routerLink="/admin/profile">
       <mat-icon>person</mat-icon>
       {{login.getUser().username}}
     </button>

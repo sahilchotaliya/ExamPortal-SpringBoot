@@ -1,0 +1,124 @@
+/* profile.component.css */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+Pro:wght@400;600&display=swap');
+
+
+body {
+  font-size: 40px; /* Base font size */
+}
+
+.profile-card {
+  max-width: 700px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.profile-header {
+  background: #2c3e50;
+  color: #ecf0f1;
+  padding: 20px;
+  text-align: center;
+}
+
+.profile-header h1 {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.profile-content {
+  padding: 30px;
+}
+
+.profile-image {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 5px solid #ecf0f1;
+  box-shadow: 0 0 0 5px #2c3e50;
+}
+
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-name {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.profile-details {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.detail-label {
+  font-weight: 600;
+  color: #34495e;
+}
+
+.detail-value {
+  color: #2c3e50;
+}
+
+.profile-footer {
+  background: #ecf0f1;
+  padding: 20px;
+  text-align: center;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+  margin: 0 10px;
+}
+
+.btn-primary {
+  background-color: #3498db;
+  color: white;
+}
+
+.btn-secondary {
+  background-color: #95a5a6;
+  color: white;
+}
+
+.btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
