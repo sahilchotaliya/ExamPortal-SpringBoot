@@ -1,0 +1,70 @@
+.container-fluid {
+  background-color: #f9f9f9;
+  min-height: 100vh;
+  padding-top: 50px;
+}
+
+h1 {
+  color: #3f51b5;
+  font-weight: 300;
+}
+
+.question-card {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background-color: white;
+  border: 1px solid #ddd;
+}
+
+mat-card-header {
+  background-color: #3f51b5;
+  color: white;
+  padding: 16px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+mat-card-title {
+  font-size: 22px;
+  font-weight: 400;
+}
+
+mat-card-subtitle {
+  color: #e0e0e0;
+}
+
+mat-card-content {
+  padding: 30px;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button[type="submit"] {
+  padding: 12px 30px;
+  font-size: 16px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+button[type="submit"]:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .col-md-6 {
+    margin-bottom: 16px;
+  }
+}
+
+@media (max-width: 576px) {
+  .mat-card-content {
+    padding: 20px;
+  }
+}

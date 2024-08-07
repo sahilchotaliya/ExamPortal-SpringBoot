@@ -1,0 +1,42 @@
+<div class="container">
+  <mat-card class="mt-20">
+    <mat-card-title>
+      <h2 class="text-center">Add New Category</h2>
+    </mat-card-title>
+    <mat-card-content>
+      <form (ngSubmit)="formSubmit()" #categoryForm="ngForm">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Title</mat-label>
+          <input
+            [(ngModel)]="category.title"
+            type="text"
+            name="title"
+            matInput
+            placeholder="Enter category title"
+            required
+            #title="ngModel"
+          >
+          <mat-error *ngIf="title.invalid && (title.dirty || title.touched)">
+            Title is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Description</mat-label>
+          <textarea
+            [(ngModel)]="category.description"
+            name="description"
+            matInput
+            placeholder="Enter category description"
+            rows="4"
+          ></textarea>
+        </mat-form-field>
+
+        <div class="button-container">
+          <button mat-raised-button color="primary" type="submit" [disabled]="categoryForm.form.invalid">Add Category</button>
+          <button mat-raised-button color="warn" type="button" (click)="resetForm(categoryForm)">Reset</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

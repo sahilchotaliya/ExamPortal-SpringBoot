@@ -1,0 +1,121 @@
+.quiz-item {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.quiz-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.quiz-icon {
+  background-color: #3f51b5;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+}
+
+.quiz-icon mat-icon {
+  color: white;
+}
+
+.quiz-title h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.quiz-title p {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.quiz-description {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.quiz-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.quiz-actions button {
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.quiz-info {
+  background-color: #f0f0f0;
+  padding: 5px 10px;
+  border-radius: 4px;
+  margin-right: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+button {
+  text-transform: uppercase;
+}
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 80%;
+  max-height: 80%;
+  overflow-y: auto;
+}
+/* Styling for sidebar */
+.sidebar-box {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-box h4 {
+  margin-bottom: 15px;
+}
+
+.sidebar-box .quiz-item {
+  margin-bottom: 10px;
+}
+/* Styling for non-published quizzes card */
+/* Styling for non-published quizzes card */
+.non-published-card {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.non-published-card h4 {
+  margin-bottom: 15px;
+}
+
+/* Styling for non-published quizzes */
+.non-published-quiz {
+  color: red; /* Red font color for non-published quizzes */
+}

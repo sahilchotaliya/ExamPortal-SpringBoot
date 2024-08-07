@@ -1,0 +1,33 @@
+<div class="container">
+  <h1 class="quiz-title">Questions of {{qtitle}}</h1>
+
+  <div class="button-container">
+    <button [routerLink]="['/admin/add-question', qid]" class="btn-add-question">Add Question</button>
+  </div>
+
+  <div *ngIf="questions && questions.length > 0">
+    <div *ngFor="let q of questions; let i = index" class="question-card">
+      <h2 class="question-number">Q {{i + 1}}) {{q.content}}</h2>
+
+      <div class="options-grid">
+        <div class="option">1) {{q.option1}}</div>
+        <div class="option">2) {{q.option2}}</div>
+        <div class="option">3) {{q.option3}}</div>
+        <div class="option">4) {{q.option4}}</div>
+      </div>
+
+      <div class="correct-answer">
+        <strong>Correct Answer:</strong> {{q.answer}}
+      </div>
+
+      <div class="question-actions">
+        <button [routerLink]="['/admin/update-question', q.quesId]" class="btn btn-warning">Update</button>
+        <button (click)="deleteQuestion(q.quesId)" class="btn btn-danger">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="questions.length === 0" class="no-questions">
+    <p>No questions available for this quiz.</p>
+  </div>
+</div>

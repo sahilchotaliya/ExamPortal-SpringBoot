@@ -1,0 +1,140 @@
+/* Base Styles */
+.container {
+  margin-top: 20px;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.quiz-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Container for button and questions */
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.question-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.question-number {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.option {
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+}
+
+.correct-answer {
+  font-weight: bold;
+  color: #28a745;
+}
+
+.no-questions {
+  text-align: center;
+  font-size: 18px;
+  color: #777;
+}
+
+/* Button Styles */
+.btn-add-question,
+.btn-update,
+.btn-delete {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 4px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-add-question {
+  background-color: #007bff;
+  color: #fff;
+  border: 1px solid #007bff;
+}
+
+.btn-add-question:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.btn-update {
+  background-color: #ffc107;
+  color: #fff;
+  border: 1px solid #ffc107;
+}
+
+.btn-update:hover {
+  background-color: #e0a800;
+  border-color: #e0a800;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+  color: #fff;
+  border: 1px solid #dc3545;
+}
+
+.btn-delete:hover {
+  background-color: #c82333;
+  border-color: #c82333;
+}
+
+.question-actions {
+  margin-top: 10px;
+  text-align: right;
+}
+
+.btn-warning {
+  background-color: #ffc107;
+  color: #333;
+}
+
+.btn-warning:hover {
+  background-color: #e0a800;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+.btn {
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}

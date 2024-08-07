@@ -1,0 +1,64 @@
+<div class="container mt-4">
+  <div class="row">
+    <!-- Main Content: Display Published Quizzes -->
+    <div class="col-md-12">
+      <h3>Published Quizzes</h3>
+      <div *ngFor="let quiz of quizzes" class="quiz-item">
+        <div class="quiz-header d-flex align-items-center">
+          <div class="quiz-icon me-3">
+            <mat-icon>quiz</mat-icon>
+          </div>
+          <div class="quiz-title">
+            <h3>{{ quiz.title }}</h3>
+            <p class="text-muted">{{ quiz.category.title }}</p>
+          </div>
+        </div>
+        <div class="quiz-description mt-2">
+          <p>{{ quiz.description }}</p>
+        </div>
+        <div class="quiz-actions mt-3">
+
+          <button [routerLink]="['/admin/view-questions', quiz.qid, quiz.title]" mat-raised-button color="primary" (click)="viewQuestions(quiz.id)">Questions</button>
+
+          <span class="quiz-info ms-2">Max Marks: {{ quiz.maxMarks }}</span>
+          <span class="quiz-info ms-2">Questions: {{ quiz.numberOfQuestion }}</span>
+          <button [routerLink]="['/admin/quiz', quiz.qid]" mat-raised-button color="accent" class="ms-2">Update</button>
+
+          <button mat-raised-button color="accent" (click)="viewAttempts(quiz.id)" class="ms-2">Attempts</button>
+          <button mat-raised-button color="red" (click)="deleteQuiz(quiz.qid)" class="ms-2">Delete</button>
+        </div>
+      </div>
+
+      <!-- Card for Non-Published Quizzes -->
+      <div *ngIf="nonPublishedQuizzes.length > 0" class="non-published-card mt-4">
+        <h4 class="non-published-quiz">Non-Published Quizzes</h4>
+        <div *ngFor="let quiz of nonPublishedQuizzes">
+          <div class="quiz-header d-flex align-items-center">
+            <div class="quiz-icon me-3">
+              <mat-icon>quiz</mat-icon>
+            </div>
+            <div class="quiz-title">
+              <h5>{{ quiz.title }}</h5>
+            </div>
+          </div>
+          <div class="quiz-description mt-2">
+            <p>{{ quiz.description }}</p>
+          </div>
+          <div class="quiz-actions mt-3">
+            <button [routerLink]="['/admin/view-questions', quiz.qid, quiz.title]" mat-raised-button color="primary" (click)="viewQuestions(quiz.id)">Questions</button>
+            <span class="quiz-info ms-2">Max Marks: {{ quiz.maxMarks }}</span>
+            <span class="quiz-info ms-2">Questions: {{ quiz.numberOfQuestion }}</span>
+            <button [routerLink]="['/admin/quiz', quiz.qid]" mat-raised-button color="accent" class="ms-2">Update</button>
+
+            <button mat-raised-button color="accent" (click)="viewAttempts(quiz.id)" class="ms-2">Attempts</button>
+            <button mat-raised-button color="red" (click)="deleteQuiz(quiz.qid)" class="ms-2">Delete</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-4">
+        <button routerLink="/admin/add-quiz/" mat-raised-button color="primary">Add New Quiz</button>
+      </div>
+    </div>
+  </div>
+</div>

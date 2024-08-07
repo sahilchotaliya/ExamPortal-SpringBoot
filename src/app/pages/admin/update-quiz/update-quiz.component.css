@@ -1,0 +1,62 @@
+.page {
+  color: white;
+  padding: 0 1rem;
+  background: #f1f5f9;
+}
+
+.page__box {
+  min-height: 120px;
+  background: #1e293b;
+  margin: 0 -1rem;
+
+  font-size: 36px;
+}
+
+.page__content {
+  min-height: calc(100vh - 178px);
+  border-radius: 10px;
+  margin-top: -2rem;
+  background: white;
+  color: black;
+}
+
+.card {
+  border: none;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+mat-form-field {
+  margin-bottom: 1rem;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+h3 {
+  color: #1e293b;
+  font-weight: 500;
+}
+
+mat-slide-toggle {
+  margin-top: 1rem;
+}
+
+button[type="submit"] {
+  padding: 0.5rem 2rem;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .page__box {
+    font-size: 24px;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+}
