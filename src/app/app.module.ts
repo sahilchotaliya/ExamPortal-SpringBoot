@@ -48,6 +48,8 @@ import { StartComponent } from './pages/user/start/start.component';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { UserProfileComponent } from './pages/user/user-profile/user-profile.component';
+import { MatTableModule } from '@angular/material/table';
 @NgModule({
   declarations: [
 
@@ -75,10 +77,12 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     InstructionsComponent,
 
     StartComponent,
+      UserProfileComponent,
 
 
   ],
   imports: [
+    MatTableModule,
     BrowserModule,
     MatProgressBarModule,
     BrowserAnimationsModule,  // Add this line

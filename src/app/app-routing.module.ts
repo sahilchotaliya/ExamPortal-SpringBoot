@@ -21,6 +21,7 @@ import { AddQuestionComponent } from './pages/admin/add-question/add-question.co
 import { UpdateQuestionComponent } from './pages/admin/update-question/update-question.component'
 import { InstructionsComponent } from './pages/user/instructions/instructions.component';
 import { StartComponent } from './pages/user/start/start.component';
+import { UserProfileComponent } from './pages/user/user-profile/user-profile.component';
 
 
 
@@ -98,7 +99,7 @@ const routes: Routes = [
       { path: '', component: LoadQuizComponent },
       { path: 'category/:categoryId', component: LoadQuizComponent },
       { path: 'instructions/:qid', component: InstructionsComponent, canActivate:[normalGuard]},
-
+      { path: 'profile', component: UserProfileComponent, canActivate:[normalGuard] },
     ],
   },
   { path: 'start/:qid', component: StartComponent }

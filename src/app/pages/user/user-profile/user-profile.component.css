@@ -1,0 +1,74 @@
+/* user-profile.component.css */
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+.profile-card, .quiz-history-card {
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.profile-image {
+
+  background-size: cover;
+}
+
+.stats-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-item h3 {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.stat-item p {
+  font-size: 24px;
+  font-weight: bold;
+  color: #3f51b5;
+}
+
+mat-card-title {
+  font-size: 24px;
+  color: #3f51b5;
+}
+
+mat-card-subtitle {
+  font-size: 16px;
+  color: #555;
+}
+
+table {
+  width: 100%;
+}
+
+th.mat-header-cell, td.mat-cell {
+  padding: 12px;
+}
+
+th.mat-header-cell {
+  font-weight: bold;
+  color: #3f51b5;
+}
+
+tr.mat-row:nth-child(even) {
+  background-color: #f8f8f8;
+}
+
+tr.mat-row:hover {
+  background-color: #e8eaf6;
+}

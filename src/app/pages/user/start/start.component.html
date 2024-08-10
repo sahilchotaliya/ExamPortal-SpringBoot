@@ -61,4 +61,8 @@
       </mat-card-actions>
     </mat-card>
   </div>
+  <div *ngIf="!isFullscreen && !isSubmit" class="fullscreen-warning">
+    <p>Please enter fullscreen mode to continue the quiz.</p>
+    <button mat-raised-button color="primary" (click)="enterFullscreen()">Enter Fullscreen</button>
+  </div>
 </div>

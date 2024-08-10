@@ -1,0 +1,46 @@
+<!-- user-profile.component.html -->
+<div class="profile-container">
+  <mat-card class="profile-card">
+    <mat-card-header>
+      <div mat-card-avatar class="profile-image"></div>
+      <mat-card-title>{{userProfile?.username}}</mat-card-title>
+      <mat-card-subtitle>{{userProfile?.email}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="stats-container">
+        <div class="stat-item">
+          <h1>Total Quizzes</h1>
+          <p>{{totalQuizzes}}</p>
+        </div>
+
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="quiz-history-card">
+    <mat-card-header>
+      <mat-card-title>Quiz History</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <table mat-table [dataSource]="userQuizzes" class="mat-elevation-z8">
+        <ng-container matColumnDef="quizTitle">
+          <th mat-header-cell *matHeaderCellDef> Quiz Title </th>
+          <td mat-cell *matCellDef="let quiz"> {{quiz.quiz.title}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef> Date & Time </th>
+          <td mat-cell *matCellDef="let quiz"> {{quiz.attemptDate | date:'medium'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="marks">
+          <th mat-header-cell *matHeaderCellDef> Marks </th>
+          <td mat-cell *matCellDef="let quiz"> {{quiz.marksEarned}} / {{quiz.quiz.maxMarks}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="['quizTitle', 'date', 'marks']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['quizTitle', 'date', 'marks'];"></tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+</div>

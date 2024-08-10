@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError, Observable } from 'rxjs';
 import baseUrl from './helper';
 
 @Injectable({
@@ -38,4 +38,10 @@ export class QuizService {
   public updateQuiz(quiz: any): Observable<any> {
     return this._http.put(`${baseUrl}/quiz/`, quiz);
   }
+  public submitQuiz(quizId: number, marksEarned: number): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this._http.post(`${baseUrl}/quiz/${quizId}/submit`, { marksEarned }, { headers });
+  }
+
 }

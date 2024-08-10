@@ -1,6 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { QuestionService } from '../../../services/question.service';
+import { QuizService } from '../../../services/quiz.service';
+import { UserProfileService } from '../../../services/user-profile.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -18,10 +20,26 @@ export class StartComponent implements OnInit, OnDestroy {
   timer: any;
   time = 0;
   currentQuestionIndex = 0;
+  showInstructions = true;
+  isFullscreen = false;
+
+  @HostListener('document:fullscreenchange', ['$event'])
+  onFullscreenChange(event: any) {
+    this.isFullscreen = !!document.fullscreenElement;
+  }
+
+  @HostListener('contextmenu', ['$event'])
+  onRightClick(event: any) {
+    event.preventDefault();
+  }
+
 
   constructor(
     private _route: ActivatedRoute,
-    private _question: QuestionService
+    private _router: Router,
+    private _question: QuestionService,
+    private _quiz: QuizService,
+
   ) {}
 
   ngOnInit(): void {
@@ -64,21 +82,20 @@ export class StartComponent implements OnInit, OnDestroy {
   }
 
   submitQuiz(): void {
-    Swal.fire({
-      title: 'Submit Quiz?',
-      text: 'Are you sure you want to submit the quiz?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, submit it!'
-    }).then((result) => {
-      if (result.isConfirmed) {
+    clearInterval(this.timer);
+    this.calculateResults();
+
+    this._quiz.submitQuiz(this.qid, this.marksGot).subscribe(
+      (data: any) => {
+        console.log(data);
         this.isSubmit = true;
-        this.calculateResults();
-        clearInterval(this.timer);
+        Swal.fire('Success', 'Quiz submitted successfully', 'success');
+      },
+      (error) => {
+        console.error('Error submitting quiz:', error);
+        Swal.fire('Error', 'Failed to submit quiz', 'error');
       }
-    });
+    );
   }
 
   calculateResults(): void {
@@ -112,5 +129,25 @@ export class StartComponent implements OnInit, OnDestroy {
     if (this.timer) {
       clearInterval(this.timer);
     }
+    this.exitFullscreen();
   }
+  startQuiz() {
+    this.showInstructions = false;
+    this.enterFullscreen();
+    this.loadQuestions();
+  }
+
+  enterFullscreen() {
+    const elem = document.documentElement;
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    }
+  }
+
+  exitFullscreen() {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    }
+  }
+
 }
