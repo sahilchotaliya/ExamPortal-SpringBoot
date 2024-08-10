@@ -1,0 +1,20 @@
+<nav class="trendy-menu mobile-menu">
+  <div class="menu-header">Menu</div>
+  <div class="menu-items">
+    <a routerLink='/user-dashboard' class="menu-item">
+      <mat-icon>home</mat-icon>
+      <span>Home</span>
+    </a>
+    <a routerLink='/' class="menu-item">
+      <mat-icon>account_circle</mat-icon>
+      <span>Profile</span>
+    </a>
+    <a routerLink='/user-dashboard' class="menu-item">
+      <mat-icon>quiz</mat-icon>All Quizzes
+    </a>
+    <a [routerLink]="['/user-dashboard/category', c.cid]" *ngFor="let c of categories" class="menu-item">
+      <mat-icon>quiz</mat-icon>
+      <span>{{c.title}}</span>
+    </a>
+  </div>
+</nav>

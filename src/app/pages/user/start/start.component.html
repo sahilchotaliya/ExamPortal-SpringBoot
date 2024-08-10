@@ -1,0 +1,64 @@
+<div class="quiz-container">
+  <mat-toolbar color="primary" *ngIf="!isSubmit">
+    <span>Quiz: {{questions[0]?.quiz.title}}</span>
+    <span class="spacer"></span>
+    <span class="timer">Time Left: {{ getFormattedTime() }}</span>
+  </mat-toolbar>
+
+  <div class="content-wrapper" *ngIf="!isSubmit">
+    <mat-card class="question-card">
+      <mat-card-content>
+        <h2>Question {{currentQuestionIndex + 1}} of {{questions.length}}</h2>
+        <p [innerHTML]="questions[currentQuestionIndex]?.content"></p>
+        <mat-radio-group [(ngModel)]="questions[currentQuestionIndex].givenAnswer">
+          <mat-radio-button *ngFor="let option of ['option1', 'option2', 'option3', 'option4']" [value]="questions[currentQuestionIndex][option]">
+            {{questions[currentQuestionIndex][option]}}
+          </mat-radio-button>
+        </mat-radio-group>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="previousQuestion()" [disabled]="currentQuestionIndex === 0">Previous</button>
+        <button mat-raised-button color="primary" (click)="nextQuestion()" [disabled]="currentQuestionIndex === questions.length - 1">Next</button>
+        <button mat-raised-button color="accent" (click)="submitQuiz()">Submit Quiz</button>
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card class="progress-card">
+      <mat-card-content>
+        <h3>Progress</h3>
+        <mat-progress-bar mode="determinate" [value]="(currentQuestionIndex + 1) / questions.length * 100"></mat-progress-bar>
+        <p>{{currentQuestionIndex + 1}} / {{questions.length}} Questions</p>
+        <h3>Time Remaining</h3>
+        <mat-progress-bar mode="determinate" [value]="time / (questions.length * 60) * 100" color="warn"></mat-progress-bar>
+        <p>{{ getFormattedTime() }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="results-wrapper" *ngIf="isSubmit">
+    <mat-card class="results-card">
+      <mat-card-header>
+        <mat-card-title>Quiz Results</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <h2>Marks Obtained: {{marksGot.toFixed(2)}}</h2>
+        <p>Correct Answers: {{correctAnswers}} / {{questions.length}}</p>
+        <p>Questions Attempted: {{attempted}} / {{questions.length}}</p>
+        <mat-divider></mat-divider>
+        <h3>Detailed Results</h3>
+        <mat-list>
+          <mat-list-item *ngFor="let q of questions; let i = index" [ngClass]="q.correct">
+            <h4 mat-line>Question {{i + 1}}: {{q.correct === 'correct' ? 'Correct' : 'Incorrect'}}</h4>
+            <p mat-line>Your Answer: {{q.givenAnswer || 'Not Attempted'}}</p>
+            <p mat-line>Correct Answer: {{q.answer}}</p>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" [routerLink]="['/user-dashboard/']">
+          <mat-icon>home</mat-icon> Back to Dashboard
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

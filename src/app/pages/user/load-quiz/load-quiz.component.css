@@ -1,0 +1,65 @@
+.quiz-card {
+  transition: transform 0.3s;
+}
+
+.quiz-card:hover {
+  transform: translateY(-5px);
+}
+
+.quiz-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.description {
+  height: 3em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.large-icon {
+  font-size: 64px;
+  width: 64px;
+  height: 64px;
+  color: #3f51b5;
+}
+
+mat-card-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+mat-card-subtitle {
+  margin-top: 8px;
+}
+
+.mat-chip {
+  font-size: 0.8rem;
+}
+
+.quiz-details p {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.quiz-details mat-icon {
+  margin-right: 8px;
+}
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}
+
+.large-icon {
+  font-size: 4rem; /* Adjust the icon size if needed */
+}

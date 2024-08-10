@@ -1,3 +1,4 @@
+import { LoadQuizComponent } from './pages/user/load-quiz/load-quiz.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SignupComponent } from './pages/signup/signup.component';
@@ -17,7 +18,10 @@ import { AddQuizComponent } from './pages/admin/add-quiz/add-quiz.component';
 import { UpdateQuizComponent } from './pages/admin/update-quiz/update-quiz.component';
 import { ViewQuizQuestionsComponent } from './pages/admin/view-quiz-questions/view-quiz-questions.component';
 import { AddQuestionComponent } from './pages/admin/add-question/add-question.component';
-import { UpdateQuestionComponent } from './pages/admin/update-question/update-question.component';
+import { UpdateQuestionComponent } from './pages/admin/update-question/update-question.component'
+import { InstructionsComponent } from './pages/user/instructions/instructions.component';
+import { StartComponent } from './pages/user/start/start.component';
+
 
 
 const routes: Routes = [
@@ -87,13 +91,17 @@ const routes: Routes = [
 
   },
   {
-    path:'user-dashboard',
-    component:UserDashboardComponent,
-    pathMatch:'full',
+    path: 'user-dashboard',
+    component: UserDashboardComponent,
     canActivate:[normalGuard],
+    children: [
+      { path: '', component: LoadQuizComponent },
+      { path: 'category/:categoryId', component: LoadQuizComponent },
+      { path: 'instructions/:qid', component: InstructionsComponent, canActivate:[normalGuard]},
 
-  }
-
+    ],
+  },
+  { path: 'start/:qid', component: StartComponent }
 ];
 
 @NgModule({

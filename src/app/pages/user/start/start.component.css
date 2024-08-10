@@ -1,0 +1,68 @@
+.quiz-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.content-wrapper {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.question-card {
+  flex: 3;
+}
+
+.progress-card {
+  flex: 1;
+}
+
+.timer {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+mat-radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+}
+
+mat-radio-button {
+  margin: 5px;
+}
+
+.results-wrapper {
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+.results-card {
+  width: 100%;
+}
+
+.correct {
+  background-color: rgba(76, 175, 80, 0.1);
+}
+
+.incorrect {
+  background-color: rgba(244, 67, 54, 0.1);
+}
+
+mat-list-item {
+  margin-bottom: 10px;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+mat-progress-bar {
+  margin-bottom: 10px;
+}

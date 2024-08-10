@@ -1,0 +1,42 @@
+<div class="container mt-5">
+  <h2 class="mb-4 text-center text-primary">Available Active Quizzes</h2>
+
+  <div class="row">
+    <div class="col-md-6 col-lg-4 mb-4" *ngFor="let quiz of quizzes">
+      <mat-card class="quiz-card h-100 shadow-sm">
+        <mat-card-header class="bg-light">
+          <div mat-card-avatar class="quiz-icon bg-primary text-white">
+            <mat-icon>quiz</mat-icon>
+          </div>
+          <mat-card-title class="text-primary">{{ quiz.title }}</mat-card-title>
+          <mat-card-subtitle>
+           <mat-chip-listbox>
+              <mat-chip color="accent" selected>{{ quiz.category.title }}</mat-chip>
+            </mat-chip-listbox>
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="mt-3">
+          <p class="description text-muted">{{ quiz.description }}</p>
+          <mat-divider class="my-3"></mat-divider>
+          <div class="quiz-details">
+            <p><mat-icon color="primary">stars</mat-icon>
+              <strong>Max Marks:</strong> {{ quiz.maxMarks }}</p>
+            <p><mat-icon color="primary">question_answer</mat-icon> <strong>Questions:</strong> {{ quiz.numberOfQuestion }}</p>
+          </div>
+        </mat-card-content>
+        <mat-card-actions class="text-center mt-auto">
+          <button [routerLink]="['/user-dashboard/instructions', quiz.qid]" mat-raised-button color="primary" class="mr-2 w-100 mb-2">   Start   Quiz    </button>
+          <button mat-stroked-button color="accent" class="w-100">
+            <mat-icon>info</mat-icon> View Details
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+  <div class="center-container">
+    <div *ngIf="quizzes.length === 0" class="text-center mt-5 center_focus_strong">
+      <mat-icon class="large-icon">not_interested</mat-icon>
+      <h1 class="mt-3">No active quizzes available at the moment.</h1>
+    </div>
+  </div>
+</div>

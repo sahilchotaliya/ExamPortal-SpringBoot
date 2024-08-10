@@ -1,0 +1,8 @@
+.sidebar {
+  width: 200px; /* Adjust as needed */
+}
+
+.main-content {
+  margin-left: 200px; /* Should match sidebar width */
+  padding: 20px;
+}

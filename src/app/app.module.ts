@@ -38,7 +38,16 @@ import { AddQuestionComponent } from './pages/admin/add-question/add-question.co
 import { UpdateQuestionComponent } from './pages/admin/update-question/update-question.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { EditorModule } from '@tinymce/tinymce-angular';
-
+import { SidebarUserComponent } from './pages/user/sidebar-user/sidebar-user.component';
+import { LoadQuizComponent } from './pages/user/load-quiz/load-quiz.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDividerModule } from '@angular/material/divider';
+import { InstructionsComponent } from './pages/user/instructions/instructions.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { StartComponent } from './pages/user/start/start.component';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 @NgModule({
   declarations: [
 
@@ -60,11 +69,18 @@ import { EditorModule } from '@tinymce/tinymce-angular';
     UpdateQuizComponent,
     ViewQuizQuestionsComponent,
     AddQuestionComponent,
-    UpdateQuestionComponent
+    UpdateQuestionComponent,
+    SidebarUserComponent,
+    LoadQuizComponent,
+    InstructionsComponent,
+
+    StartComponent,
+
 
   ],
   imports: [
     BrowserModule,
+    MatProgressBarModule,
     BrowserAnimationsModule,  // Add this line
     AppRoutingModule,
     MatInputModule,
@@ -73,12 +89,16 @@ import { EditorModule } from '@tinymce/tinymce-angular';
     HttpClientModule,
     MatCardModule,
     MatSnackBarModule,
+    MatCheckboxModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,MatListModule, MatSelectModule,
     MatSlideToggleModule,CKEditorModule,
-     EditorModule
-
+     EditorModule,
+     MatChipsModule,
+     MatRadioModule,
+     MatProgressSpinnerModule,
+     MatDividerModule
   ],
   providers: [AuthInterceptorProviders],
   bootstrap: [AppComponent]

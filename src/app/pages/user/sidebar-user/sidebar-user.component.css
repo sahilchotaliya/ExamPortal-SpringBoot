@@ -1,0 +1,55 @@
+.trendy-menu {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 250px;
+}
+
+.menu-header {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  margin: 8px 0;
+  color: #555;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border-radius: 6px;
+}
+
+.menu-item:hover {
+  background-color: #f6f8ff;
+  color: #3f51b5;
+  transform: translateX(5px);
+}
+
+.menu-item mat-icon {
+  margin-right: 15px;
+  transition: all 0.3s ease;
+}
+
+.menu-item:hover mat-icon {
+  color: #3f51b5;
+  transform: scale(1.1);
+}
+
+.menu-item span {
+  font-size: 16px;
+}
+.sidebar {
+  width: 200px; /* Adjust as needed */
+}
+
+.main-content {
+  margin-left: 200px; /* Should match sidebar width */
+  padding: 20px;
+}
