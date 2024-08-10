@@ -1,11 +1,15 @@
 package com.exam.controller;
 
+
 import com.exam.model.exam.Quiz;
+import com.exam.model.exam.UserQuiz;
 import com.exam.services.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
 import java.util.Set;
 
 @RestController
@@ -65,5 +69,17 @@ public class QuizController {
     public ResponseEntity<Set<Quiz>> getActiveQuizzesOfCategory(@PathVariable Long categoryId) {
         Set<Quiz> quizzes = this.quizService.getActiveQuizzesOfCategory(categoryId);
         return ResponseEntity.ok(quizzes);
+    }
+    @PostMapping("/{quizId}/submit")
+    public ResponseEntity<?> submitQuiz(@PathVariable Long quizId, @RequestBody Map<String, Integer> request, Authentication authentication) {
+        Integer marksEarned = request.get("marksEarned");
+        if (marksEarned == null) {
+            return ResponseEntity.badRequest().body("Marks earned is required");
+        }
+        UserQuiz userQuiz = quizService.saveUserQuiz(authentication.getName(), quizId, marksEarned);
+        if (userQuiz != null) {
+            return ResponseEntity.ok(userQuiz);
+        }
+        return ResponseEntity.badRequest().body("Failed to save quiz result");
     }
 }

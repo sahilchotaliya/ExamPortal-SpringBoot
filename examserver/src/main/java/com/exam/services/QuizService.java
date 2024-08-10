@@ -1,6 +1,8 @@
 package com.exam.services;
 
+import com.exam.model.exam.UserQuiz;
 import com.exam.model.exam.Quiz;
+import com.exam.model.exam.UserQuiz;
 
 import java.util.Set;
 
@@ -15,4 +17,5 @@ public interface QuizService {
     Set<Quiz> getQuizzesByCategory(Long categoryId);
     Set<Quiz> getActiveQuizzes();
     Set<Quiz> getActiveQuizzesOfCategory(Long categoryId);
+    UserQuiz saveUserQuiz(String username, Long quizId, int marksEarned);
 }

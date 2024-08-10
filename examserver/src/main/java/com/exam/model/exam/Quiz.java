@@ -4,6 +4,7 @@ package com.exam.model.exam;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,7 +19,26 @@ public class Quiz {
     private String description;
     private String maxMarks;
     private String numberOfQuestion;
+
+    public int getMarksEarned() {
+        return marksEarned;
+    }
+
+    public void setMarksEarned(int marksEarned) {
+        this.marksEarned = marksEarned;
+    }
+
+    public LocalDateTime getAttemptDate() {
+        return attemptDate;
+    }
+
+    public void setAttemptDate(LocalDateTime attemptDate) {
+        this.attemptDate = attemptDate;
+    }
+
     private Boolean active = false;
+    private int marksEarned;
+    private LocalDateTime attemptDate;
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Category category;

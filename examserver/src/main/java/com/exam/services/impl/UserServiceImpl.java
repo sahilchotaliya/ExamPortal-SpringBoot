@@ -1,23 +1,31 @@
 package com.exam.services.impl;
 
-import com.exam.model.Role;
 import com.exam.model.User;
+import com.exam.model.exam.UserQuiz;
 import com.exam.model.UserRole;
+import com.exam.model.exam.UserQuiz;
 import com.exam.repo.RoleRepository;
+import com.exam.repo.UserQuizRepository;
 import com.exam.repo.UserRepository;
 import com.exam.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
+    private UserQuizRepository userQuizRepository;
+
+    @Autowired
     private UserRepository userRepository;
 
     @Autowired
     private RoleRepository roleRepository;
+
 
     @Override
     public User createUser(User user, Set<UserRole> userRoles) throws Exception {
@@ -64,7 +72,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<UserQuiz> getUserQuizzes(String username) {
+        return userQuizRepository.findByUserUsername(username);
+    }
+
+    @Override
     public void deleteUser(Long userId) {
         this.userRepository.deleteById(userId);
     }
+
 }

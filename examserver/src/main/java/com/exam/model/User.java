@@ -1,6 +1,7 @@
 package com.exam.model;
 
 
+import com.exam.model.exam.UserQuiz;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -32,13 +33,26 @@ public class User  implements UserDetails {
     @JsonIgnore
     private Set<UserRole> userRoles = new HashSet<>();
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Set<UserQuiz> userQuizzes;
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     //defult construtor
     public User() {
     }
 //getter & satter
 
+    public Set<UserQuiz> getUserQuizzes() {
+        return userQuizzes;
+    }
+
+    public void setUserQuizzes(Set<UserQuiz> userQuizzes) {
+        this.userQuizzes = userQuizzes;
+    }
 
     public String getProfile() {
         return profile;
