@@ -50,4 +50,20 @@ public class QuizController {
         quizService.deleteQuiz(qid);
         return ResponseEntity.ok().build();
     }
+    @GetMapping("/category/{categoryId}")
+    public ResponseEntity<Set<Quiz>> getQuizzesByCategory(@PathVariable Long categoryId) {
+        Set<Quiz> quizzes = quizService.getQuizzesByCategory(categoryId);
+        return ResponseEntity.ok(quizzes);
+    }
+    @GetMapping("/active")
+    public ResponseEntity<Set<Quiz>> getActiveQuizzes() {
+        Set<Quiz> quizzes = this.quizService.getActiveQuizzes();
+        return ResponseEntity.ok(quizzes);
+    }
+
+    @GetMapping("/category/{categoryId}/active")
+    public ResponseEntity<Set<Quiz>> getActiveQuizzesOfCategory(@PathVariable Long categoryId) {
+        Set<Quiz> quizzes = this.quizService.getActiveQuizzesOfCategory(categoryId);
+        return ResponseEntity.ok(quizzes);
+    }
 }

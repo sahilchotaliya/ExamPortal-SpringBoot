@@ -41,4 +41,19 @@ public class QuizServiceImpl implements QuizService {
 
     this.quizRepository.deleteById(quizId);
     }
+
+    @Override
+    public Set<Quiz> getQuizzesByCategory(Long categoryId) {
+        return quizRepository.findByCategoryCid(categoryId);
+    }
+
+    @Override
+    public Set<Quiz> getActiveQuizzes() {
+        return new HashSet<>(this.quizRepository.findByActive(true));
+    }
+
+    @Override
+    public Set<Quiz> getActiveQuizzesOfCategory(Long categoryId) {
+        return this.quizRepository.findByCategoryCidAndActive(categoryId, true);
+    }
 }

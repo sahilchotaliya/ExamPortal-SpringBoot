@@ -11,5 +11,8 @@ public interface QuizService {
     public Set<Quiz> getQuizzes();
     public  Quiz getQuiz(Long quizId);
     public void deleteQuiz(Long quizId);
-
+    // In QuizService interface
+    Set<Quiz> getQuizzesByCategory(Long categoryId);
+    Set<Quiz> getActiveQuizzes();
+    Set<Quiz> getActiveQuizzesOfCategory(Long categoryId);
 }
