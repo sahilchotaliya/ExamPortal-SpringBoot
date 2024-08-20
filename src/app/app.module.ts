@@ -50,6 +50,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { UserProfileComponent } from './pages/user/user-profile/user-profile.component';
 import { MatTableModule } from '@angular/material/table';
+import {MatSidenavModule} from '@angular/material/sidenav';
 @NgModule({
   declarations: [
 
@@ -102,7 +103,8 @@ import { MatTableModule } from '@angular/material/table';
      MatChipsModule,
      MatRadioModule,
      MatProgressSpinnerModule,
-     MatDividerModule
+     MatDividerModule,
+     MatSidenavModule
   ],
   providers: [AuthInterceptorProviders],
   bootstrap: [AppComponent]

@@ -2,6 +2,13 @@
 
 **Note:** This project uses a Spring Boot backend. Make sure to check out the `backend` branch for the backend code. Follow the instructions in the `backend` branch to set up and run the Spring Boot server.
 
+## 🚀 Usage
+
+If you have docker compose installed, Just run the following command:
+
+```sh
+docker compose up
+
 # TestAng
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.8.
