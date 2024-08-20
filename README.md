@@ -8,6 +8,7 @@ If you have docker compose installed, Just run the following command:
 
 ```sh
 docker compose up
+```
 
 # TestAng
 
