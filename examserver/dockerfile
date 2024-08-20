@@ -1,0 +1,14 @@
+# Use the official OpenJDK image as the base image
+FROM openjdk:21-slim
+
+# Set the working directory in the container
+WORKDIR /usr/src/exam
+
+# Copy the JAR file into the container
+COPY examserver-0.0.1-SNAPSHOT.jar .
+
+# Expose the port that the application runs on
+EXPOSE 8080
+
+# Command to run the application
+CMD ["java", "-jar", "examserver-0.0.1-SNAPSHOT.jar"]
