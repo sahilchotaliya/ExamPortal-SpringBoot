@@ -23,6 +23,12 @@ export class StartComponent implements OnInit, OnDestroy {
   showInstructions = true;
   isFullscreen = false;
 
+  @HostListener('document:visibilitychange', ['$event'])
+  onVisibilityChange(event: any) {
+    event.preventDefault();
+    this.blockTabSwitch();
+  }
+
   @HostListener('document:fullscreenchange', ['$event'])
   onFullscreenChange(event: any) {
     this.isFullscreen = !!document.fullscreenElement;
@@ -33,18 +39,33 @@ export class StartComponent implements OnInit, OnDestroy {
     event.preventDefault();
   }
 
+  @HostListener('document:copy', ['$event'])
+  onCopy(event: ClipboardEvent) {
+    event.preventDefault();
+    Swal.fire('Error', 'Copying text is not allowed during the quiz.', 'error');
+  }
 
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
     private _question: QuestionService,
-    private _quiz: QuizService,
-
+    private _quiz: QuizService
   ) {}
 
   ngOnInit(): void {
     this.qid = this._route.snapshot.params['qid'];
     this.loadQuestions();
+  }
+
+  blockTabSwitch(): void {
+    Swal.fire({
+      title: 'Stop!',
+      text: 'Switching tabs or windows is not allowed during the quiz.',
+      icon: 'warning',
+      confirmButtonText: 'Understood'
+    }).then(() => {
+      this.enterFullscreen();
+    });
   }
 
   loadQuestions(): void {
@@ -57,6 +78,7 @@ export class StartComponent implements OnInit, OnDestroy {
         });
         this.time = this.questions.length * 60;
         this.startTimer();
+        this.enterFullscreen();
       },
       (error) => {
         console.log(error);
@@ -131,6 +153,7 @@ export class StartComponent implements OnInit, OnDestroy {
     }
     this.exitFullscreen();
   }
+
   startQuiz() {
     this.showInstructions = false;
     this.enterFullscreen();
@@ -149,5 +172,4 @@ export class StartComponent implements OnInit, OnDestroy {
       document.exitFullscreen();
     }
   }
-
 }

@@ -29,7 +29,7 @@ import { ViewCategoriesComponent } from './pages/admin/view-categories/view-cate
 import { AddCategoryComponent } from './pages/admin/add-category/add-category.component';
 import { ViewQuizzesComponent } from './pages/admin/view-quizzes/view-quizzes.component';
 import { AddQuizComponent } from './pages/admin/add-quiz/add-quiz.component';
-
+import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { UpdateQuizComponent } from './pages/admin/update-quiz/update-quiz.component';
@@ -84,6 +84,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
   ],
   imports: [
     MatTableModule,
+    MatPaginatorModule,
     BrowserModule,
     MatProgressBarModule,
     BrowserAnimationsModule,  // Add this line
