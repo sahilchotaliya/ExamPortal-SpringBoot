@@ -17,8 +17,10 @@ import java.util.Map;
 @RequestMapping("/user")
 @CrossOrigin("*")
 public class UserProfileController {
-    @Autowired
     private UserService userService;
+    UserProfileController(UserService userService){
+    	this.userService = userService;
+    }
 
     @GetMapping("/profile")
     public ResponseEntity<?> getUserProfile(Authentication authentication) {

@@ -13,10 +13,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserDetailServiceImpl implements UserDetailsService {
 
-    private static final Logger logger = LoggerFactory.getLogger(UserDetailServiceImpl.class);
+	private UserRepository userRepository;
 
-    @Autowired
-    private UserRepository userRepository;
+	UserDetailServiceImpl(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
+
+    private static final Logger logger = LoggerFactory.getLogger(UserDetailServiceImpl.class);
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -27,7 +30,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException("Username cannot be null or empty");
         }
 
-        User user = this.userRepository.findByUsername(username);
+        User user =  userRepository.findByUsername(username);
         System.out.println("SASSASASSASSASAS"+username);
         if (user == null) {
             logger.error("User not found with username: " + username);

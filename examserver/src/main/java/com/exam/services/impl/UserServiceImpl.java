@@ -17,21 +17,22 @@ import java.util.Set;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    private UserQuizRepository userQuizRepository;
+	private final UserQuizRepository userQuizRepository;
+	private final UserRepository userRepository;
+	private final RoleRepository roleRepository;
 
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private RoleRepository roleRepository;
-
+	public UserServiceImpl(UserQuizRepository userQuizRepository, UserRepository userRepository,
+			RoleRepository roleRepository) {
+		this.userQuizRepository = userQuizRepository;
+		this.userRepository = userRepository;
+		this.roleRepository = roleRepository;
+	}
 
     @Override
     public User createUser(User user, Set<UserRole> userRoles) throws Exception {
 
         // Check if user already exists
-        User local = this.userRepository.findByUsername(user.getUsername());
+        User local =  userRepository.findByUsername(user.getUsername());
         if (local != null) {
             System.out.println("User is already there");
             throw new Exception("User already present");
@@ -45,7 +46,7 @@ public class UserServiceImpl implements UserService {
             user.getUserRoles().addAll(userRoles);
 
             // Save the user
-            local = this.userRepository.save(user);
+            local =  userRepository.save(user);
         }
 
         return local;
@@ -55,12 +56,12 @@ public class UserServiceImpl implements UserService {
     //getting user by user name
     @Override
     public User getUser(String username) {
-        return this.userRepository.findByUsername(username);
+        return  userRepository.findByUsername(username);
     }
 
     @Override
     public User updateUser(User user) throws Exception {
-        User existingUser = this.userRepository.findById(user.getId())
+        User existingUser =  userRepository.findById(user.getId())
                 .orElseThrow(() -> new Exception("User not found"));
 
         // Update the user's properties here
@@ -68,7 +69,7 @@ public class UserServiceImpl implements UserService {
         existingUser.setEmail(user.getEmail());
         // Update other fields as necessary
 
-        return this.userRepository.save(existingUser);
+        return  userRepository.save(existingUser);
     }
 
     @Override
@@ -78,7 +79,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(Long userId) {
-        this.userRepository.deleteById(userId);
+         userRepository.deleteById(userId);
     }
 
 }
