@@ -27,15 +27,19 @@ public class AuthenticationController {
 
     private static final Logger logger = LoggerFactory.getLogger(AuthenticationController.class);
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+	private AuthenticationManager authenticationManager;
 
-    @Autowired
-    private UserDetailServiceImpl userDetailService;
+	private UserDetailServiceImpl userDetailService;
 
-    @Autowired
-    private JwtUtil jwtUtil;
+	private JwtUtil jwtUtil;
 
+	AuthenticationController(AuthenticationManager authenticationManager, UserDetailServiceImpl userDetailService,
+			JwtUtil jwtUtil) {
+		this.authenticationManager = authenticationManager;
+		this.userDetailService = userDetailService;
+		this.jwtUtil = jwtUtil;
+	}
+    
     @PostMapping("/generate-token")
     public ResponseEntity<JwtResponse> createToken(@RequestBody JwtRequest jwtRequest) {
         try {
@@ -70,7 +74,7 @@ public class AuthenticationController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not authenticated");
         }
         try {
-            User user = (User) this.userDetailService.loadUserByUsername(principal.getName());
+            User user = (User) userDetailService.loadUserByUsername(principal.getName());
             logger.info("Current user retrieved: {}", user.getUsername());
             return ResponseEntity.ok(user);
         } catch (Exception e) {
