@@ -17,9 +17,11 @@ import java.util.Set;
 @CrossOrigin("*")
 public class QuizController {
 
-    @Autowired
-    private QuizService quizService;
+	private QuizService quizService;
 
+	QuizController(QuizService quizService) {
+		this.quizService = quizService;
+	}
     // Add a new quiz
     @PostMapping("/")
     public ResponseEntity<Quiz> addQuiz(@RequestBody Quiz quiz) {
@@ -61,13 +63,13 @@ public class QuizController {
     }
     @GetMapping("/active")
     public ResponseEntity<Set<Quiz>> getActiveQuizzes() {
-        Set<Quiz> quizzes = this.quizService.getActiveQuizzes();
+        Set<Quiz> quizzes = quizService.getActiveQuizzes();
         return ResponseEntity.ok(quizzes);
     }
 
     @GetMapping("/category/{categoryId}/active")
     public ResponseEntity<Set<Quiz>> getActiveQuizzesOfCategory(@PathVariable Long categoryId) {
-        Set<Quiz> quizzes = this.quizService.getActiveQuizzesOfCategory(categoryId);
+        Set<Quiz> quizzes = quizService.getActiveQuizzesOfCategory(categoryId);
         return ResponseEntity.ok(quizzes);
     }
     @PostMapping("/{quizId}/submit")

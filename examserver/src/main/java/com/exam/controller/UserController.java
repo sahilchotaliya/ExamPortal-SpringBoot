@@ -17,12 +17,14 @@ import java.util.Set;
 @CrossOrigin("*")
 public class UserController {
 
-    @Autowired
     private UserService userService;
 
-@Autowired
     private BCryptPasswordEncoder passwordEncoder;
-
+    
+    UserController(UserService userService ,BCryptPasswordEncoder passwordEncoder ){
+    	this.userService = userService;
+    	this.passwordEncoder = passwordEncoder;
+    }
 
         @PostMapping("/")
         public User createUser(@RequestBody User user) throws Exception {
@@ -33,7 +35,7 @@ public class UserController {
 
                 //encoding password with bcryptpassword
 
-            user.setPassword(this.passwordEncoder.encode(user.getPassword()));
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
 
 
             Set<UserRole> roles = new HashSet<>();
@@ -49,7 +51,7 @@ public class UserController {
             roles.add(userRole);
 
 
-            return this.userService.createUser(user,roles);
+            return userService.createUser(user,roles);
 
 
         }
@@ -57,19 +59,19 @@ public class UserController {
         @GetMapping("/{username}")
         public  User getUser(@PathVariable("username") String username){
 
-           return this.userService.getUser(username);
+           return userService.getUser(username);
         }
     //update user
     @PutMapping("/{userId}")
     public User updateUser(@PathVariable("userId") Long userId, @RequestBody User user) throws Exception {
         user.setId(userId);
-        return this.userService.updateUser(user);
+        return userService.updateUser(user);
     }
 
 
     //delete user
         @DeleteMapping("/{userId}")
         public void deleteUser(@PathVariable("userId") Long userId){
-        this.userService.deleteUser(userId);
+        userService.deleteUser(userId);
         }
 }

@@ -1,5 +1,7 @@
 package com.exam.services.impl;
 
+import com.exam.exception.CategoryNotSavedException;
+import com.exam.exception.CategoryNotUpdatedException;
 import com.exam.model.exam.Category;
 import com.exam.repo.CategoryRepository;
 import com.exam.services.CategoryService;
@@ -13,30 +15,38 @@ import java.util.Set;
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
-    @Autowired
     private CategoryRepository categoryRepository;
-
-
-
-    @Override
-    public Category addCategory(Category category) {
-        return this.categoryRepository.save(category);
+    
+    CategoryServiceImpl(CategoryRepository categoryRepository){
+    	this.categoryRepository = categoryRepository;
     }
 
     @Override
-    public Category upateCategory(Category category) {
-        return this.categoryRepository.save(category);
+    public Category addCategory(Category category) throws CategoryNotSavedException{
+    	try {
+			return categoryRepository.save(category);
+		} catch (Exception e) {
+			throw new CategoryNotSavedException();
+		}
+    }
+
+    @Override
+    public Category upateCategory(Category category) throws CategoryNotUpdatedException{
+    	try {
+    		 return categoryRepository.save(category);
+		} catch (Exception e) {
+			throw new CategoryNotUpdatedException();
+		}
     }
 
     @Override
     public Set<Category> getCategories() {
-      return new LinkedHashSet<>(this.categoryRepository.findAll());
+      return new LinkedHashSet<>(categoryRepository.findAll());
     }
 
     @Override
-    public Category geCategory(long categoryId) {
-          Optional<Category> category = this.categoryRepository.findById(categoryId);
-        return category.orElse(null);
+    public Optional<Category> geCategory(long categoryId) {
+        return categoryRepository.findById(categoryId);
     }
 
     @Override
@@ -44,6 +54,6 @@ public class CategoryServiceImpl implements CategoryService {
 
         Category category = new Category();
         category.setCid(categoryId); // Assuming there's a setter for CID
-        this.categoryRepository.delete(category);
+        categoryRepository.delete(category);
     }
 }

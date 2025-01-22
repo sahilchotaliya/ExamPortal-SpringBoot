@@ -14,8 +14,12 @@ import java.util.Set;
 @Service
 public class QuestionServiceImpl implements QuestionService {
 
-    @Autowired
     private QuestionRespository questionRepository;
+    
+    QuestionServiceImpl(QuestionRespository questionRepository){
+    	this.questionRepository = questionRepository;
+    }
+    
     @Override
     public Question addQuestion(Question question) {
         return questionRepository.save(question);
@@ -32,8 +36,8 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public Question getQuestion(Long quetionId) {
-       return this.questionRepository.findById(quetionId).get();
+    public Optional<Question> getQuestion(Long quetionId) {
+    	return questionRepository.findById(quetionId);
     }
 
     @Override

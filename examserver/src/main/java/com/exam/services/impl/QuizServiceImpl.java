@@ -1,5 +1,7 @@
 package com.exam.services.impl;
 
+import com.exam.exception.QuizNotFoundException;
+import com.exam.exception.UserNotFoundException;
 import com.exam.model.User;
 
 import com.exam.model.exam.Quiz;
@@ -13,42 +15,47 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
 public class QuizServiceImpl implements QuizService {
-    @Autowired
     private UserQuizRepository userQuizRepository;
-    @Autowired
     private UserRepository userRepository;
-    @Autowired
     private QuizRepository quizRepository;
+    
+    QuizServiceImpl(UserQuizRepository userQuizRepository , UserRepository userRepository , QuizRepository quizRepository) {
+    	this.userQuizRepository = userQuizRepository;
+    	this.userRepository = userRepository;
+    	this.quizRepository = quizRepository;
+	}
+    
     @Override
     public Quiz addQuiz(Quiz quiz) {
-        return this.quizRepository.save(quiz);
+        return quizRepository.save(quiz);
     }
 
     @Override
     public Quiz updateQuiz(Quiz quiz) {
-        return this.quizRepository.save(quiz);
+        return quizRepository.save(quiz);
     }
 
     @Override
     public Set<Quiz> getQuizzes() {
-        return new HashSet<>(this.quizRepository.findAll());
+        return new HashSet<>(quizRepository.findAll());
 
     }
 
     @Override
-    public Quiz getQuiz(Long quizId) {
-        return this.quizRepository.findById(quizId).get();
+    public Optional<Quiz> getQuiz(Long quizId) {
+        return quizRepository.findById(quizId);
     }
 
     @Override
     public void deleteQuiz(Long quizId) {
 
 
-    this.quizRepository.deleteById(quizId);
+     quizRepository.deleteById(quizId);
     }
 
     @Override
@@ -58,27 +65,34 @@ public class QuizServiceImpl implements QuizService {
 
     @Override
     public Set<Quiz> getActiveQuizzes() {
-        return new HashSet<>(this.quizRepository.findByActive(true));
+        return new HashSet<>( quizRepository.findByActive(true));
     }
 
     @Override
     public Set<Quiz> getActiveQuizzesOfCategory(Long categoryId) {
-        return this.quizRepository.findByCategoryCidAndActive(categoryId, true);
+        return  quizRepository.findByCategoryCidAndActive(categoryId, true);
     }
 
     @Override
-    public UserQuiz saveUserQuiz(String username, Long quizId, int marksEarned) {
-        User user = userRepository.findByUsername(username);
-        System.out.println("profile user");
-        Quiz quiz = this.getQuiz(quizId);
-        if (user != null && quiz != null) {
-            UserQuiz userQuiz = new UserQuiz();
-            userQuiz.setUser(user);
-            userQuiz.setQuiz(quiz);
-            userQuiz.setMarksEarned(marksEarned);
-            userQuiz.setAttemptDate(LocalDateTime.now());
-            return userQuizRepository.save(userQuiz);
+    public UserQuiz saveUserQuiz(String username, Long quizId, int marksEarned) throws QuizNotFoundException, UserNotFoundException {
+        Optional<User> userOpt = userRepository.findByUsername(username);
+        if(userOpt.isPresent()) {
+        	System.out.println("profile user");
+        	User user = userOpt.get();
+            Optional<Quiz> quizOpt =  getQuiz(quizId);
+            if(quizOpt.isPresent()) {
+            	Quiz quiz = quizOpt.get();
+                UserQuiz userQuiz = new UserQuiz();
+                userQuiz.setUser(user);
+                userQuiz.setQuiz(quiz);
+                userQuiz.setMarksEarned(marksEarned);
+                userQuiz.setAttemptDate(LocalDateTime.now());
+                return userQuizRepository.save(userQuiz);
+            }else {
+            	throw new QuizNotFoundException();
+            }
+        }else {
+        	throw new UserNotFoundException();
         }
-        return null;
     }
 }
